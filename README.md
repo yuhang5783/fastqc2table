@@ -13,6 +13,15 @@ Y25_2.fq.gz	95453868	45	99.14114952	86.74958882
 python3 fastqc2table.py fastqc_data.txt > result.xls
 ```
 
+在你的Unix系统中，可以使用以下命令整理多个fastqc结果文件：
+
+```shell
+# 解压所有fastqc结果压缩包
+for i in *.zip; do unzip $i; done
+# 对所有文件夹中的“fastqc_data.txt”文件执行操作并将结果
+ls -l | grep ^d | while read id; do python3 fastqc2table.py ${id##* }/fastqc_data.txt >> fastqc_table.xls; done
+```
+
 
 
 ---
